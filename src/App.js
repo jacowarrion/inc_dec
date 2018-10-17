@@ -1,28 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import but from "./piumeno.png";
 
-class App extends Component {
+export default class App extends React.Component {
+
+  constructor(){
+    super();
+    this.state = {
+      currentNumber: 0,
+      img:{
+        "backgroundImage" : "url("+but+")",
+      }
+    }
+    this.add = this.add.bind(this);
+    this.sub = this.sub.bind(this);
+  }
+  add(){
+    this.setState({
+      currentNumber: (this.state.currentNumber + 1)
+    })
+  }
+  sub(){
+    this.setState({
+      currentNumber: (this.state.currentNumber - 1)
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div id="meno"style={this.state.img} onClick={this.add}> </div>
+      <div id="count">{this.state.currentNumber}</div>
+      <div id="piu" style={this.state.img} onClick={this.sub}> </div>
       </div>
     );
   }
 }
-
-export default App;
